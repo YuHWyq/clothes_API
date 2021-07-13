@@ -22,7 +22,7 @@ namespace Clothes_API.Models
             this.out_repertory = new HashSet<out_repertory>();
         }
     
-        public string orderr_id { get; set; }
+        public int order_id { get; set; }
         public int customer_id { get; set; }
         public System.DateTime order_starttime { get; set; }
         public System.DateTime order_endtime { get; set; }

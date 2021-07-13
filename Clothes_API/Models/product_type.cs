@@ -14,16 +14,7 @@ namespace Clothes_API.Models
     
     public partial class product_type
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public product_type()
-        {
-            this.materialr_type = new HashSet<materialr_type>();
-        }
-    
         public int product_type_id { get; set; }
         public string product_type_name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<materialr_type> materialr_type { get; set; }
     }
 }

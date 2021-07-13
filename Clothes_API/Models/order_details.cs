@@ -16,7 +16,7 @@ namespace Clothes_API.Models
     {
         public int order_details_id { get; set; }
         public int product_id { get; set; }
-        public string order_id { get; set; }
+        public int order_id { get; set; }
         public decimal order_details_money { get; set; }
         public int quantity { get; set; }
     

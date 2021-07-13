@@ -38,5 +38,7 @@ namespace Clothes_API.Models
         public virtual ICollection<pro_repertory> pro_repertory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<product_plan_details> product_plan_details { get; set; }
+        public virtual product product1 { get; set; }
+        public virtual product product2 { get; set; }
     }
 }

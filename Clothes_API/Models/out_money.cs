@@ -16,7 +16,6 @@ namespace Clothes_API.Models
     {
         public int out_in_money_id { get; set; }
         public string out_in_id { get; set; }
-        public string statue { get; set; }
     
         public virtual in_materialr in_materialr { get; set; }
     }

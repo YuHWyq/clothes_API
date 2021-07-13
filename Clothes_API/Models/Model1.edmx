@@ -65,8 +65,7 @@
             <PropertyRef Name="in_money_id" />
           </Key>
           <Property Name="in_money_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="out_in_id" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="statue" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="out_in_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="in_repertory">
           <Key>
@@ -84,7 +83,6 @@
           </Key>
           <Property Name="materialr_details_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="materialr_details_name" Type="nvarchar" MaxLength="20" />
-          <Property Name="materialr_type_id" Type="int" />
           <Property Name="materialr_details_price" Type="money" />
           <Property Name="material_supplier" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -101,7 +99,7 @@
           <Key>
             <PropertyRef Name="materialr_epertory_id" />
           </Key>
-          <Property Name="materialr_epertory_id" Type="int" Nullable="false" />
+          <Property Name="materialr_epertory_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="materialr_details_id" Type="int" Nullable="false" />
           <Property Name="materialr_num" Type="int" Nullable="false" />
         </EntityType>
@@ -112,13 +110,6 @@
           <Property Name="materialr_in_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="in_materialr_id" Type="int" Nullable="false" />
           <Property Name="materialr_details_id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="materialr_type">
-          <Key>
-            <PropertyRef Name="materialr_type_id" />
-          </Key>
-          <Property Name="materialr_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="materialr_type_name" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="materials_plan">
           <Key>
@@ -151,9 +142,9 @@
         </EntityType>
         <EntityType Name="order">
           <Key>
-            <PropertyRef Name="orderr_id" />
+            <PropertyRef Name="order_id" />
           </Key>
-          <Property Name="orderr_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="customer_id" Type="int" Nullable="false" />
           <Property Name="order_starttime" Type="date" Nullable="false" />
           <Property Name="order_endtime" Type="date" Nullable="false" />
@@ -170,7 +161,7 @@
           </Key>
           <Property Name="order_details_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="product_id" Type="int" Nullable="false" />
-          <Property Name="order_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="order_id" Type="int" Nullable="false" />
           <Property Name="order_details_money" Type="money" Nullable="false" />
           <Property Name="quantity" Type="int" Nullable="false" />
         </EntityType>
@@ -186,16 +177,15 @@
           <Key>
             <PropertyRef Name="out_in_money_id" />
           </Key>
-          <Property Name="out_in_money_id" Type="int" Nullable="false" />
+          <Property Name="out_in_money_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="out_in_id" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="statue" Type="char" MaxLength="4" Nullable="false" />
         </EntityType>
         <EntityType Name="out_repertory">
           <Key>
             <PropertyRef Name="out_repertoryout_repertory_id" />
           </Key>
           <Property Name="out_repertoryout_repertory_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="orderr_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="order_id" Type="int" Nullable="false" />
           <Property Name="person_handling" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="operator_per" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="out_time" Type="date" Nullable="false" />
@@ -223,7 +213,7 @@
           <Key>
             <PropertyRef Name="product_id" />
           </Key>
-          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="product_num" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="product_name" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="product_producer" Type="nvarchar" MaxLength="200" Nullable="false" />
@@ -263,6 +253,13 @@
           <Property Name="quality_testing_time" Type="date" Nullable="false" />
           <Property Name="operator_per" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="result" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product_type">
+          <Key>
+            <PropertyRef Name="product_type_id" />
+          </Key>
+          <Property Name="product_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_type_name" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <Association Name="FK_buy_materials_details_in_materialr">
           <End Role="in_materialr" Type="Self.in_materialr" Multiplicity="1" />
@@ -317,7 +314,7 @@
           <End Role="in_money" Type="Self.in_money" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="order">
-              <PropertyRef Name="orderr_id" />
+              <PropertyRef Name="order_id" />
             </Principal>
             <Dependent Role="in_money">
               <PropertyRef Name="out_in_id" />
@@ -413,7 +410,7 @@
           <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="order">
-              <PropertyRef Name="orderr_id" />
+              <PropertyRef Name="order_id" />
             </Principal>
             <Dependent Role="order_details">
               <PropertyRef Name="order_id" />
@@ -473,10 +470,10 @@
           <End Role="out_repertory" Type="Self.out_repertory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="order">
-              <PropertyRef Name="orderr_id" />
+              <PropertyRef Name="order_id" />
             </Principal>
             <Dependent Role="out_repertory">
-              <PropertyRef Name="orderr_id" />
+              <PropertyRef Name="order_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -528,6 +525,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_product_product">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="product1" Type="Self.product" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="product1">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_product_quality_testing_pro_production">
           <End Role="pro_production" Type="Self.pro_production" Multiplicity="1" />
           <End Role="product_quality_testing" Type="Self.product_quality_testing" Multiplicity="*" />
@@ -552,7 +561,6 @@
           <EntitySet Name="materialr_details" EntityType="Self.materialr_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="materialr_epertory" EntityType="Self.materialr_epertory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="materialr_in" EntityType="Self.materialr_in" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="materialr_type" EntityType="Self.materialr_type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="materials_plan" EntityType="Self.materials_plan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="materials_plan_details" EntityType="Self.materials_plan_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="materials_quality_testing" EntityType="Self.materials_quality_testing" Schema="dbo" store:Type="Tables" />
@@ -567,6 +575,7 @@
           <EntitySet Name="product_plan" EntityType="Self.product_plan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="product_plan_details" EntityType="Self.product_plan_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="product_quality_testing" EntityType="Self.product_quality_testing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product_type" EntityType="Self.product_type" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_buy_materials_details_in_materialr" Association="Self.FK_buy_materials_details_in_materialr">
             <End Role="in_materialr" EntitySet="in_materialr" />
             <End Role="buy_materials_details" EntitySet="buy_materials_details" />
@@ -654,6 +663,10 @@
           <AssociationSet Name="FK_product_plan_details_product_plan_details" Association="Self.FK_product_plan_details_product_plan_details">
             <End Role="product_plan" EntitySet="product_plan" />
             <End Role="product_plan_details" EntitySet="product_plan_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_product" Association="Self.FK_product_product">
+            <End Role="product" EntitySet="product" />
+            <End Role="product1" EntitySet="product" />
           </AssociationSet>
           <AssociationSet Name="FK_product_quality_testing_pro_production" Association="Self.FK_product_quality_testing_pro_production">
             <End Role="pro_production" EntitySet="pro_production" />
@@ -736,8 +749,7 @@
             <PropertyRef Name="in_money_id" />
           </Key>
           <Property Name="in_money_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="out_in_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="statue" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="out_in_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="order" Relationship="Self.FK_in_money_order" FromRole="in_money" ToRole="order" />
         </EntityType>
         <EntityType Name="in_repertory">
@@ -757,7 +769,6 @@
           </Key>
           <Property Name="materialr_details_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="materialr_details_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="materialr_type_id" Type="Int32" />
           <Property Name="materialr_details_price" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="material_supplier" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="buy_materials_details" Relationship="Self.FK_buy_materials_details_materialr" FromRole="materialr" ToRole="buy_materials_details" />
@@ -780,7 +791,7 @@
           <Key>
             <PropertyRef Name="materialr_epertory_id" />
           </Key>
-          <Property Name="materialr_epertory_id" Type="Int32" Nullable="false" />
+          <Property Name="materialr_epertory_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="materialr_details_id" Type="Int32" Nullable="false" />
           <Property Name="materialr_num" Type="Int32" Nullable="false" />
           <NavigationProperty Name="materialr" Relationship="Self.FK_materialr_epertory_materialr" FromRole="materialr_epertory" ToRole="materialr" />
@@ -794,13 +805,6 @@
           <Property Name="materialr_details_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="materialr_in1" Relationship="Self.FK_materialr_in_materialr_in" FromRole="materialr_in" ToRole="materialr_in1" />
           <NavigationProperty Name="materialr_in2" Relationship="Self.FK_materialr_in_materialr_in" FromRole="materialr_in1" ToRole="materialr_in" />
-        </EntityType>
-        <EntityType Name="materialr_type">
-          <Key>
-            <PropertyRef Name="materialr_type_id" />
-          </Key>
-          <Property Name="materialr_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="materialr_type_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="materials_plan">
           <Key>
@@ -835,9 +839,9 @@
         </EntityType>
         <EntityType Name="order">
           <Key>
-            <PropertyRef Name="orderr_id" />
+            <PropertyRef Name="order_id" />
           </Key>
-          <Property Name="orderr_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="customer_id" Type="Int32" Nullable="false" />
           <Property Name="order_starttime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="order_endtime" Type="DateTime" Nullable="false" Precision="0" />
@@ -858,7 +862,7 @@
           </Key>
           <Property Name="order_details_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="product_id" Type="Int32" Nullable="false" />
-          <Property Name="order_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="order_id" Type="Int32" Nullable="false" />
           <Property Name="order_details_money" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="order" Relationship="Self.FK_order_details_order_details" FromRole="order_details" ToRole="order" />
@@ -878,9 +882,8 @@
           <Key>
             <PropertyRef Name="out_in_money_id" />
           </Key>
-          <Property Name="out_in_money_id" Type="Int32" Nullable="false" />
+          <Property Name="out_in_money_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="out_in_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="statue" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="in_materialr" Relationship="Self.FK_out_money_in_materialr" FromRole="out_money" ToRole="in_materialr" />
         </EntityType>
         <EntityType Name="out_repertory">
@@ -888,7 +891,7 @@
             <PropertyRef Name="out_repertoryout_repertory_id" />
           </Key>
           <Property Name="out_repertoryout_repertory_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="orderr_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="order_id" Type="Int32" Nullable="false" />
           <Property Name="person_handling" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="operator_per" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="out_time" Type="DateTime" Nullable="false" Precision="0" />
@@ -921,7 +924,7 @@
           <Key>
             <PropertyRef Name="product_id" />
           </Key>
-          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="product_num" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="product_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="product_producer" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
@@ -933,6 +936,8 @@
           <NavigationProperty Name="order_details" Relationship="Self.FK_order_details_product" FromRole="product" ToRole="order_details" />
           <NavigationProperty Name="pro_repertory" Relationship="Self.FK_pro_repertory_product" FromRole="product" ToRole="pro_repertory" />
           <NavigationProperty Name="product_plan_details" Relationship="Self.FK_product_plan_details_product" FromRole="product" ToRole="product_plan_details" />
+          <NavigationProperty Name="product1" Relationship="Self.FK_product_product" FromRole="product" ToRole="product1" />
+          <NavigationProperty Name="product2" Relationship="Self.FK_product_product" FromRole="product1" ToRole="product" />
         </EntityType>
         <EntityType Name="product_plan">
           <Key>
@@ -969,6 +974,13 @@
           <Property Name="operator_per" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="result" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="pro_production" Relationship="Self.FK_product_quality_testing_pro_production" FromRole="product_quality_testing" ToRole="pro_production" />
+        </EntityType>
+        <EntityType Name="product_type">
+          <Key>
+            <PropertyRef Name="product_type_id" />
+          </Key>
+          <Property Name="product_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_type_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <Association Name="FK_buy_materials_details_in_materialr">
           <End Role="in_materialr" Type="Self.in_materialr" Multiplicity="1" />
@@ -1083,7 +1095,7 @@
           <End Role="in_money" Type="Self.in_money" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="order">
-              <PropertyRef Name="orderr_id" />
+              <PropertyRef Name="order_id" />
             </Principal>
             <Dependent Role="in_money">
               <PropertyRef Name="out_in_id" />
@@ -1155,7 +1167,7 @@
           <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="order">
-              <PropertyRef Name="orderr_id" />
+              <PropertyRef Name="order_id" />
             </Principal>
             <Dependent Role="order_details">
               <PropertyRef Name="order_id" />
@@ -1167,10 +1179,10 @@
           <End Role="out_repertory" Type="Self.out_repertory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="order">
-              <PropertyRef Name="orderr_id" />
+              <PropertyRef Name="order_id" />
             </Principal>
             <Dependent Role="out_repertory">
-              <PropertyRef Name="orderr_id" />
+              <PropertyRef Name="order_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1234,6 +1246,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_product_product">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="product1" Type="Self.product" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="product1">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_product_plan_details_product_plan_details">
           <End Role="product_plan" Type="Self.product_plan" Multiplicity="1" />
           <End Role="product_plan_details" Type="Self.product_plan_details" Multiplicity="*" />
@@ -1246,7 +1270,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ClothingDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ClothingDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="admin" EntityType="Self.admin" />
           <EntitySet Name="buy_materials_details" EntityType="Self.buy_materials_details" />
           <EntitySet Name="customer" EntityType="Self.customer" />
@@ -1258,7 +1282,6 @@
           <EntitySet Name="materialr_details" EntityType="Self.materialr_details" />
           <EntitySet Name="materialr_epertory" EntityType="Self.materialr_epertory" />
           <EntitySet Name="materialr_in" EntityType="Self.materialr_in" />
-          <EntitySet Name="materialr_type" EntityType="Self.materialr_type" />
           <EntitySet Name="materials_plan" EntityType="Self.materials_plan" />
           <EntitySet Name="materials_plan_details" EntityType="Self.materials_plan_details" />
           <EntitySet Name="materials_quality_testing" EntityType="Self.materials_quality_testing" />
@@ -1273,6 +1296,7 @@
           <EntitySet Name="product_plan" EntityType="Self.product_plan" />
           <EntitySet Name="product_plan_details" EntityType="Self.product_plan_details" />
           <EntitySet Name="product_quality_testing" EntityType="Self.product_quality_testing" />
+          <EntitySet Name="product_type" EntityType="Self.product_type" />
           <AssociationSet Name="FK_buy_materials_details_in_materialr" Association="Self.FK_buy_materials_details_in_materialr">
             <End Role="in_materialr" EntitySet="in_materialr" />
             <End Role="buy_materials_details" EntitySet="buy_materials_details" />
@@ -1361,6 +1385,10 @@
             <End Role="product" EntitySet="product" />
             <End Role="product_plan_details" EntitySet="product_plan_details" />
           </AssociationSet>
+          <AssociationSet Name="FK_product_product" Association="Self.FK_product_product">
+            <End Role="product" EntitySet="product" />
+            <End Role="product1" EntitySet="product" />
+          </AssociationSet>
           <AssociationSet Name="FK_product_plan_details_product_plan_details" Association="Self.FK_product_plan_details_product_plan_details">
             <End Role="product_plan" EntitySet="product_plan" />
             <End Role="product_plan_details" EntitySet="product_plan_details" />
@@ -1371,7 +1399,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ClothingDBModelStoreContainer" CdmEntityContainer="ClothingDBEntities">
+        <EntityContainerMapping StorageEntityContainer="ClothingDBModelStoreContainer" CdmEntityContainer="ClothingDBEntities1">
           <EntitySetMapping Name="admin">
             <EntityTypeMapping TypeName="ClothingDBModel.admin">
               <MappingFragment StoreEntitySet="admin">
@@ -1437,7 +1465,6 @@
               <MappingFragment StoreEntitySet="in_money">
                 <ScalarProperty Name="in_money_id" ColumnName="in_money_id" />
                 <ScalarProperty Name="out_in_id" ColumnName="out_in_id" />
-                <ScalarProperty Name="statue" ColumnName="statue" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1457,7 +1484,6 @@
               <MappingFragment StoreEntitySet="materialr">
                 <ScalarProperty Name="materialr_details_id" ColumnName="materialr_details_id" />
                 <ScalarProperty Name="materialr_details_name" ColumnName="materialr_details_name" />
-                <ScalarProperty Name="materialr_type_id" ColumnName="materialr_type_id" />
                 <ScalarProperty Name="materialr_details_price" ColumnName="materialr_details_price" />
                 <ScalarProperty Name="material_supplier" ColumnName="material_supplier" />
               </MappingFragment>
@@ -1488,14 +1514,6 @@
                 <ScalarProperty Name="materialr_in_id" ColumnName="materialr_in_id" />
                 <ScalarProperty Name="in_materialr_id" ColumnName="in_materialr_id" />
                 <ScalarProperty Name="materialr_details_id" ColumnName="materialr_details_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="materialr_type">
-            <EntityTypeMapping TypeName="ClothingDBModel.materialr_type">
-              <MappingFragment StoreEntitySet="materialr_type">
-                <ScalarProperty Name="materialr_type_id" ColumnName="materialr_type_id" />
-                <ScalarProperty Name="materialr_type_name" ColumnName="materialr_type_name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1534,7 +1552,7 @@
           <EntitySetMapping Name="order">
             <EntityTypeMapping TypeName="ClothingDBModel.order">
               <MappingFragment StoreEntitySet="order">
-                <ScalarProperty Name="orderr_id" ColumnName="orderr_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="customer_id" ColumnName="customer_id" />
                 <ScalarProperty Name="order_starttime" ColumnName="order_starttime" />
                 <ScalarProperty Name="order_endtime" ColumnName="order_endtime" />
@@ -1572,7 +1590,6 @@
               <MappingFragment StoreEntitySet="out_money">
                 <ScalarProperty Name="out_in_money_id" ColumnName="out_in_money_id" />
                 <ScalarProperty Name="out_in_id" ColumnName="out_in_id" />
-                <ScalarProperty Name="statue" ColumnName="statue" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1580,7 +1597,7 @@
             <EntityTypeMapping TypeName="ClothingDBModel.out_repertory">
               <MappingFragment StoreEntitySet="out_repertory">
                 <ScalarProperty Name="out_repertoryout_repertory_id" ColumnName="out_repertoryout_repertory_id" />
-                <ScalarProperty Name="orderr_id" ColumnName="orderr_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="person_handling" ColumnName="person_handling" />
                 <ScalarProperty Name="operator_per" ColumnName="operator_per" />
                 <ScalarProperty Name="out_time" ColumnName="out_time" />
@@ -1654,6 +1671,14 @@
                 <ScalarProperty Name="quality_testing_time" ColumnName="quality_testing_time" />
                 <ScalarProperty Name="operator_per" ColumnName="operator_per" />
                 <ScalarProperty Name="result" ColumnName="result" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product_type">
+            <EntityTypeMapping TypeName="ClothingDBModel.product_type">
+              <MappingFragment StoreEntitySet="product_type">
+                <ScalarProperty Name="product_type_id" ColumnName="product_type_id" />
+                <ScalarProperty Name="product_type_name" ColumnName="product_type_name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

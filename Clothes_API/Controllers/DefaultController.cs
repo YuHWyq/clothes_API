@@ -10,7 +10,7 @@ namespace Clothes_API.Controllers
 {
     public class DefaultController : ApiController
     {
-        ClothingDBEntities db = new ClothingDBEntities();
+        ClothingDBEntities1 db = new ClothingDBEntities1();
         [HttpGet]
         public string ss()
         {

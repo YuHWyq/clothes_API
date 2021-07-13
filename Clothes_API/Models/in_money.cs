@@ -15,8 +15,7 @@ namespace Clothes_API.Models
     public partial class in_money
     {
         public int in_money_id { get; set; }
-        public string out_in_id { get; set; }
-        public string statue { get; set; }
+        public int out_in_id { get; set; }
     
         public virtual order order { get; set; }
     }

@@ -25,7 +25,6 @@ namespace Clothes_API.Models
     
         public int materialr_details_id { get; set; }
         public string materialr_details_name { get; set; }
-        public Nullable<int> materialr_type_id { get; set; }
         public Nullable<decimal> materialr_details_price { get; set; }
         public string material_supplier { get; set; }
     

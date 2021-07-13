@@ -15,7 +15,7 @@ namespace Clothes_API.Models
     public partial class out_repertory
     {
         public int out_repertoryout_repertory_id { get; set; }
-        public string orderr_id { get; set; }
+        public int order_id { get; set; }
         public string person_handling { get; set; }
         public string operator_per { get; set; }
         public System.DateTime out_time { get; set; }
