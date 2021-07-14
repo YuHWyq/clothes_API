@@ -10,7 +10,7 @@ namespace Clothes_API.Controllers
 {
     public class LoginYZController : ApiController
     {
-        ClothingDBEntities1 db = new ClothingDBEntities1();
+        ClothingDBEntities2 db = new ClothingDBEntities2();
           [HttpPost]
         //登录验证接口
         public string LoginUser( dynamic obj)

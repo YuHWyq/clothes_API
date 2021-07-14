@@ -10,17 +10,16 @@
 namespace Clothes_API.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class quality_testing
+    public partial class orders_select_Result
     {
-        public int quality_testing_id { get; set; }
-        public int pro_production_id { get; set; }
-        public System.DateTime quality_testing_time { get; set; }
+        public int order_id { get; set; }
+        public string customer_name { get; set; }
         public string person_handling { get; set; }
-        public string @operator { get; set; }
-        public string result { get; set; }
-    
-        public virtual pro_production pro_production { get; set; }
+        public decimal order_paid { get; set; }
+        public decimal order_unpaid { get; set; }
+        public System.DateTime order_starttime { get; set; }
+        public System.DateTime order_endtime { get; set; }
+        public string order_status { get; set; }
     }
 }

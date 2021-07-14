@@ -10,13 +10,14 @@
 namespace Clothes_API.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class in_money
+    public partial class orders_details_select_Result
     {
-        public int in_money_id { get; set; }
-        public int out_in_id { get; set; }
-    
-        public virtual orders orders { get; set; }
+        public int product_id { get; set; }
+        public string product_name { get; set; }
+        public string product_price { get; set; }
+        public int quantity { get; set; }
+        public string product_type { get; set; }
+        public string product_num { get; set; }
     }
 }

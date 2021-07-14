@@ -17,7 +17,6 @@ namespace Clothes_API.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public get_materials()
         {
-            this.materialr_details = new HashSet<materialr_details>();
             this.out_materialr = new HashSet<out_materialr>();
         }
     
@@ -28,11 +27,9 @@ namespace Clothes_API.Models
         public string person_handling { get; set; }
         public string status { get; set; }
         public System.DateTime get_time { get; set; }
+        public Nullable<int> materialr_details_num { get; set; }
+        public Nullable<int> materialr_details_id { get; set; }
     
-        public virtual get_materials get_materials1 { get; set; }
-        public virtual get_materials get_materials2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<materialr_details> materialr_details { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<out_materialr> out_materialr { get; set; }
     }

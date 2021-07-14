@@ -20,7 +20,7 @@ namespace Clothes_API.Models
         public decimal order_details_money { get; set; }
         public int quantity { get; set; }
     
-        public virtual order order { get; set; }
+        public virtual orders orders { get; set; }
         public virtual product product { get; set; }
     }
 }

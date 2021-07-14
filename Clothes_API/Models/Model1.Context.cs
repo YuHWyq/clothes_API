@@ -12,11 +12,13 @@ namespace Clothes_API.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
-    public partial class ClothingDBEntities1 : DbContext
+    public partial class ClothingDBEntities2 : DbContext
     {
-        public ClothingDBEntities1()
-            : base("name=ClothingDBEntities1")
+        public ClothingDBEntities2()
+            : base("name=ClothingDBEntities2")
         {
         }
     
@@ -39,8 +41,8 @@ namespace Clothes_API.Models
         public virtual DbSet<materials_plan> materials_plan { get; set; }
         public virtual DbSet<materials_plan_details> materials_plan_details { get; set; }
         public virtual DbSet<materials_quality_testing> materials_quality_testing { get; set; }
-        public virtual DbSet<order> order { get; set; }
         public virtual DbSet<order_details> order_details { get; set; }
+        public virtual DbSet<orders> orders { get; set; }
         public virtual DbSet<out_materialr> out_materialr { get; set; }
         public virtual DbSet<out_money> out_money { get; set; }
         public virtual DbSet<out_repertory> out_repertory { get; set; }
@@ -51,5 +53,42 @@ namespace Clothes_API.Models
         public virtual DbSet<product_plan_details> product_plan_details { get; set; }
         public virtual DbSet<product_quality_testing> product_quality_testing { get; set; }
         public virtual DbSet<product_type> product_type { get; set; }
+    
+        public virtual ObjectResult<chukuxiangqings_Result> chukuxiangqings(Nullable<int> order_id)
+        {
+            var order_idParameter = order_id.HasValue ?
+                new ObjectParameter("order_id", order_id) :
+                new ObjectParameter("order_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<chukuxiangqings_Result>("chukuxiangqings", order_idParameter);
+        }
+    
+        public virtual ObjectResult<orders_Delivery_Result> orders_Delivery(Nullable<int> order_id)
+        {
+            var order_idParameter = order_id.HasValue ?
+                new ObjectParameter("order_id", order_id) :
+                new ObjectParameter("order_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<orders_Delivery_Result>("orders_Delivery", order_idParameter);
+        }
+    
+        public virtual ObjectResult<orders_details_select_Result> orders_details_select(Nullable<int> order_id)
+        {
+            var order_idParameter = order_id.HasValue ?
+                new ObjectParameter("order_id", order_id) :
+                new ObjectParameter("order_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<orders_details_select_Result>("orders_details_select", order_idParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Unprocessed_ID()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Unprocessed_ID");
+        }
+    
+        public virtual ObjectResult<orders_select_Result> orders_select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<orders_select_Result>("orders_select");
+        }
     }
 }

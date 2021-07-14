@@ -10,15 +10,14 @@
 namespace Clothes_API.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class out_in_money
+    public partial class chukuxiangqings_Result
     {
-        public int out_in_details_id { get; set; }
-        public string out_in_id { get; set; }
-        public string statue { get; set; }
-    
-        public virtual in_materialr in_materialr { get; set; }
-        public virtual order order { get; set; }
+        public string product_num { get; set; }
+        public string product_name { get; set; }
+        public int quantity { get; set; }
+        public string product_price { get; set; }
+        public string product_type { get; set; }
+        public string unit { get; set; }
     }
 }

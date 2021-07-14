@@ -17,7 +17,7 @@ namespace Clothes_API.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public customer()
         {
-            this.order = new HashSet<order>();
+            this.orders = new HashSet<orders>();
         }
     
         public int customer_id { get; set; }
@@ -32,6 +32,6 @@ namespace Clothes_API.Models
         public string bank_account { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<order> order { get; set; }
+        public virtual ICollection<orders> orders { get; set; }
     }
 }

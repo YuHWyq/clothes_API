@@ -12,10 +12,10 @@ namespace Clothes_API.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class order
+    public partial class orders
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public order()
+        public orders()
         {
             this.in_money = new HashSet<in_money>();
             this.order_details = new HashSet<order_details>();
@@ -31,7 +31,6 @@ namespace Clothes_API.Models
         public decimal order_paid { get; set; }
         public decimal order_unpaid { get; set; }
         public string order_status { get; set; }
-        public string order_delivery_way { get; set; }
     
         public virtual customer customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
