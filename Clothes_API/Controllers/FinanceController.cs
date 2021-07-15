@@ -8,15 +8,16 @@ using System.Web.Http;
 
 namespace Clothes_API.Controllers
 {
-    public class DefaultController : ApiController
+    public class FinanceController : ApiController
     {
         ClothingDBEntities3 db = new ClothingDBEntities3();
+        //收入
         [HttpGet]
-        public string ss()
+        public string in_m()
         {
-            var dd = db.admin.ToList();
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(dd);
-            return json;
+            var list1 = db.Database.SqlQuery<shouru_Result>("exec shouru ").ToList();
+            int s = list1.Count();
+            return Newtonsoft.Json.JsonConvert.SerializeObject(list1);
         }
     }
 }

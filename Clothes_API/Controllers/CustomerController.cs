@@ -13,7 +13,7 @@ namespace Clothes_API.Controllers
         //客户管理接口
         public object Get()
         {
-            using (ClothingDBEntities2 db = new ClothingDBEntities2())
+            using (ClothingDBEntities3 db = new ClothingDBEntities3())
             {
                 var list = db.customer.ToList();
                 return list;

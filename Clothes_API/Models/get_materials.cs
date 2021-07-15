@@ -27,9 +27,10 @@ namespace Clothes_API.Models
         public string person_handling { get; set; }
         public string status { get; set; }
         public System.DateTime get_time { get; set; }
-        public Nullable<int> materialr_details_num { get; set; }
-        public Nullable<int> materialr_details_id { get; set; }
+        public int materialr_details_num { get; set; }
+        public int materialr_details_id { get; set; }
     
+        public virtual materialr materialr { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<out_materialr> out_materialr { get; set; }
     }

@@ -10,15 +10,12 @@
 namespace Clothes_API.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class out_repertory
+    public partial class shouru_Result
     {
-        public int out_repertoryout_repertory_id { get; set; }
+        public int in_money_id { get; set; }
         public int order_id { get; set; }
-        public string person_handling { get; set; }
-        public System.DateTime out_time { get; set; }
-    
-        public virtual orders orders { get; set; }
+        public string product_name { get; set; }
+        public Nullable<decimal> zong { get; set; }
     }
 }

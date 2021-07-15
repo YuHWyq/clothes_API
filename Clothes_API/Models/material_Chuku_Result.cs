@@ -10,15 +10,13 @@
 namespace Clothes_API.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class out_repertory
+    public partial class material_Chuku_Result
     {
-        public int out_repertoryout_repertory_id { get; set; }
-        public int order_id { get; set; }
-        public string person_handling { get; set; }
-        public System.DateTime out_time { get; set; }
-    
-        public virtual orders orders { get; set; }
+        public int out_materialr_id { get; set; }
+        public int materialr_details_num { get; set; }
+        public string materialr_details_name { get; set; }
+        public Nullable<decimal> materialr_details_price { get; set; }
+        public string material_supplier { get; set; }
     }
 }

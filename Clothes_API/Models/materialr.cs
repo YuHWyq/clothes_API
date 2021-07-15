@@ -18,6 +18,7 @@ namespace Clothes_API.Models
         public materialr()
         {
             this.buy_materials_details = new HashSet<buy_materials_details>();
+            this.get_materials = new HashSet<get_materials>();
             this.materialr_details = new HashSet<materialr_details>();
             this.materialr_epertory = new HashSet<materialr_epertory>();
             this.out_materialr = new HashSet<out_materialr>();
@@ -30,6 +31,8 @@ namespace Clothes_API.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<buy_materials_details> buy_materials_details { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<get_materials> get_materials { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<materialr_details> materialr_details { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

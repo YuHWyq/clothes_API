@@ -15,10 +15,10 @@ namespace Clothes_API.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class ClothingDBEntities2 : DbContext
+    public partial class ClothingDBEntities3 : DbContext
     {
-        public ClothingDBEntities2()
-            : base("name=ClothingDBEntities2")
+        public ClothingDBEntities3()
+            : base("name=ClothingDBEntities3")
         {
         }
     
@@ -29,6 +29,7 @@ namespace Clothes_API.Models
     
         public virtual DbSet<admin> admin { get; set; }
         public virtual DbSet<buy_materials_details> buy_materials_details { get; set; }
+        public virtual DbSet<cl> cl { get; set; }
         public virtual DbSet<customer> customer { get; set; }
         public virtual DbSet<get_materials> get_materials { get; set; }
         public virtual DbSet<in_materialr> in_materialr { get; set; }
@@ -63,6 +64,21 @@ namespace Clothes_API.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<chukuxiangqings_Result>("chukuxiangqings", order_idParameter);
         }
     
+        public virtual ObjectResult<clkc_Result> clkc()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<clkc_Result>("clkc");
+        }
+    
+        public virtual ObjectResult<material_Chuku_Result> material_Chuku()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<material_Chuku_Result>("material_Chuku");
+        }
+    
+        public virtual ObjectResult<material_Kucun_Result> material_Kucun()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<material_Kucun_Result>("material_Kucun");
+        }
+    
         public virtual ObjectResult<orders_Delivery_Result> orders_Delivery(Nullable<int> order_id)
         {
             var order_idParameter = order_id.HasValue ?
@@ -81,14 +97,19 @@ namespace Clothes_API.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<orders_details_select_Result>("orders_details_select", order_idParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> Unprocessed_ID()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Unprocessed_ID");
-        }
-    
         public virtual ObjectResult<orders_select_Result> orders_select()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<orders_select_Result>("orders_select");
+        }
+    
+        public virtual ObjectResult<shouru_Result> shouru()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<shouru_Result>("shouru");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Unprocessed_ID()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Unprocessed_ID");
         }
     }
 }
